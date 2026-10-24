@@ -27,3 +27,13 @@ Single-file script (`morning.py`) with three responsibilities:
 - **`send_notification(title, body)`** — fires a Windows desktop toast via `plyer`; degrades gracefully if plyer is missing
 
 `main()` wires them together: print summary to stdout, then notify.
+
+## Health check
+
+`health_check.py` pings the Anthropic API with "ping", appends `timestamp / status / response_time` to `health_check.log`, and prints `[TIMESTAMP] Health check: OK` or `FAILED`. It needs `ANTHROPIC_API_KEY` in the environment.
+
+Schedule (05:00, 10:00, 15:00, 20:00 daily) on Windows:
+
+```powershell
+schtasks /Create /TN "HealthCheck" /SC DAILY /ST 05:00 /RI 300 /DU 0015:30 /TR "python C:\path\to\health_check.py"
+```
