@@ -8,7 +8,7 @@ import urllib.request
 sys.stdout.reconfigure(encoding="utf-8")
 
 API_URL = "https://api.anthropic.com/v1/messages"
-MODEL = "claude-haiku-5-5"
+MODEL = "claude-haiku-4-5-20251001"
 LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "health_check.log")
 
 
